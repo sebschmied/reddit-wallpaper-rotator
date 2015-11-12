@@ -16,7 +16,7 @@ wpdir="/home/seb/wallpapers/earthporn"
 
 #RedditImageGrab directory
 #see https://github.com/HoverHell/RedditImageGrab
-rigdir="/home/seb/RedditImageGrab"
+rigdir="./RedditImageGrab"
 
 #where to put the log
 logfile="/var/log/cronjobs/download-earthporn.log"
