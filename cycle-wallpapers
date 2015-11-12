@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ./config
 DIR="/home/seb/wallpapers/earthporn"
 PIC=$(ls $DIR/* | shuf -n1)
 gsettings set org.gnome.desktop.background picture-uri "file://$PIC"

@@ -1,45 +1,11 @@
 #!/bin/bash
+source ./config
+python $rigdir/redditdl.py $subreddit $wpdir --score $karma --update --num $maxpics >$logfile # download latest $maxpics pics with karma >=$karma
+freshpics=find $wpdir -type f -mtime -$maxage | wc -l # get number of up-to-date-pics that would still be there after we delete the the outdated ones
 
-##config
-
-#number of pics to download
-maxpics=20
-
-#delete only if we have at least this number of pics left
-minpics=10
-
-#delete pics older than this
-maxage=7
-
-#wallpaper directory
-wpdir="/home/seb/wallpapers/earthporn"
-
-#RedditImageGrab directory
-#see https://github.com/HoverHell/RedditImageGrab
-rigdir="./RedditImageGrab"
-
-#where to put the log
-logfile="/var/log/cronjobs/download-earthporn.log"
-
-#subreddit to download from
-subreddit="earthporn"
-#minimum karma on reddit to download
-karma=1000
-
-
-
-#download last $maxpics pics with karma >=1000
-python $rigdir/redditdl.py $subreddit $wpdir --score $karma --update --num $maxpics >$logfile
-
-#get number of up-to-date-pics
-freshpics=find $wpdir -type f -mtime -$maxage | wc -l
-
-
-
-if (($freshpics > $minpics)); then
-	#delete pics older than maxage days
-	find $wpdir -type f -mtime +$maxage -exec rm -rf {} \;
-	#set random wallpaper (current one might have gotten deleted in previous step)
-	./cycle-wallpapers
-fi
+if (($freshpics > $minpics)); then # do this only if it will leave us with at least $minpics wallpapers
+	
+	find $wpdir -type f -mtime +$maxage -exec rm -rf {} \; # delete all files older that $maxage
+	./cycle-wallpapers #set random wallpaper (in case we just deleted the current one)
+fi 
 
