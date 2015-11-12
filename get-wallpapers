@@ -40,6 +40,6 @@ if (($freshpics > $minpics)); then
 	#delete pics older than maxage days
 	find $wpdir -type f -mtime +$maxage -exec rm -rf {} \;
 	#set random wallpaper (current one might have gotten deleted in previous step)
-	/home/seb/cronjobs/cycle-wallpapers
+	./cycle-wallpapers
 fi
 
