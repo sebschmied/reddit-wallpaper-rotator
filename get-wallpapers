@@ -1,5 +1,6 @@
 #!/bin/bash
-source ./config
+scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $scriptdir/config
 python $rigdir/redditdl.py $subreddit $wpdir --score $karma --update --num $maxpics >$logfile # download latest $maxpics pics with karma >=$karma
 freshpics=$(find $wpdir -type f -mtime -$maxage | wc -l) # get number of up-to-date-pics that would still be there after we delete the the outdated ones
 

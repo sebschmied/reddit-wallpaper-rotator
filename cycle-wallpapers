@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./config
-DIR="/home/seb/wallpapers/earthporn"
-PIC=$(ls $DIR/* | shuf -n1)
+scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $scriptdir/config
+PIC=$(ls $wpdir/* | shuf -n1)
 gsettings set org.gnome.desktop.background picture-uri "file://$PIC"
