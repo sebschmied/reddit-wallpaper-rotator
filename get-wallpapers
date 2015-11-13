@@ -1,10 +1,9 @@
 #!/bin/bash
 source ./config
 python $rigdir/redditdl.py $subreddit $wpdir --score $karma --update --num $maxpics >$logfile # download latest $maxpics pics with karma >=$karma
-freshpics=find $wpdir -type f -mtime -$maxage | wc -l # get number of up-to-date-pics that would still be there after we delete the the outdated ones
+freshpics=$(find $wpdir -type f -mtime -$maxage | wc -l) # get number of up-to-date-pics that would still be there after we delete the the outdated ones
 
-if (($freshpics > $minpics)); then # do this only if it will leave us with at least $minpics wallpapers
-	
+if [ $freshpics > $minpics ]; then # do this only if it will leave us with at least $minpics wallpapers
 	find $wpdir -type f -mtime +$maxage -exec rm -rf {} \; # delete all files older that $maxage
 	./cycle-wallpapers #set random wallpaper (in case we just deleted the current one)
 fi 
