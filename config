@@ -5,8 +5,8 @@ maxpics=20                                         # number of pics to download
 minpics=10                                         # delete only if we have at least this number of pics left
 maxage=7                                           # delete pics older than this (in days)
 
-wpdir="/home/seb/wallpapers/earthporn"             # wallpaper directory
+wpdir="/home/seb/Pictures/wallpapers/$subreddit"             # wallpaper directory
 rigdir="./RedditImageGrab"                         # RedditImageGrab directory. See https://github.com/HoverHell/RedditImageGrab
-logfile="/var/log/cronjobs/download-earthporn.log" # where to put the RedditImageGrab  log
+logfile="reddit-image-grab.log" # where to put the RedditImageGrab  log
 
 
