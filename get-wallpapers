@@ -7,6 +7,6 @@ freshpics=$(find $wpdir -type f -mtime -$maxage | wc -l) # get number of up-to-d
 
 if [ $freshpics > $minpics ]; then # do this only if it will leave us with at least $minpics wallpapers
 	find $wpdir -type f -mtime +$maxage -exec rm -rf {} \; # delete all files older that $maxage
-	./cycle-wallpapers #set random wallpaper (in case we just deleted the current one)
+	$scriptdir/cycle-wallpapers #set random wallpaper (in case we just deleted the current one)
 fi 
 
